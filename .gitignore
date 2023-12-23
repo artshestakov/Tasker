@@ -1,3 +1,7 @@
 /Bin
 /Build
+/TaskClient/Debug
+/TaskClient/Release
+/TaskClient/x64
+
 /.vs
