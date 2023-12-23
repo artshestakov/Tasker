@@ -1,12 +1,12 @@
-#include "utils.h"
+#include "TRUtils.h"
 //-----------------------------------------------------------------------------
-std::string utils::get_socket_address(std::shared_ptr<Session> s)
+std::string TRUtils::get_socket_address(std::shared_ptr<TRSession> s)
 {
     auto rmt = s->get_socket().remote_endpoint();
     return rmt.address().to_string() + ":" + std::to_string(rmt.port());
 }
 //-----------------------------------------------------------------------------
-std::vector<std::string> utils::split_string(const std::string& s, char sep)
+std::vector<std::string> TRUtils::split_string(const std::string& s, char sep)
 {
     std::vector<std::string> v;
 
@@ -42,7 +42,7 @@ std::vector<std::string> utils::split_string(const std::string& s, char sep)
     return v;
 }
 //-----------------------------------------------------------------------------
-void utils::string_to_lower(std::string& s)
+void TRUtils::string_to_lower(std::string& s)
 {
     //Комментарий для преподавателя: именно такая реализация самая быстрая и оптимальная
     //Конструкция проверена годами на разных компиляторах и системах.
@@ -52,7 +52,7 @@ void utils::string_to_lower(std::string& s)
     }
 }
 //-----------------------------------------------------------------------------
-std::optional<uint64_t> utils::string_to_uint64(const std::string& s)
+std::optional<uint64_t> TRUtils::string_to_uint64(const std::string& s)
 {
     try
     {
@@ -65,7 +65,7 @@ std::optional<uint64_t> utils::string_to_uint64(const std::string& s)
     return std::nullopt;
 }
 //-----------------------------------------------------------------------------
-void utils::string_rm_right(std::string& s, size_t n)
+void TRUtils::string_rm_right(std::string& s, size_t n)
 {
     //Получаем размер строки
     size_t size = s.size();

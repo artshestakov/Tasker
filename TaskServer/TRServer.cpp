@@ -1,18 +1,18 @@
-#include "server.h"
-#include "utils.h"
+#include "TRServer.h"
+#include "TRUtils.h"
 //-----------------------------------------------------------------------------
-Server::Server(boost::asio::io_service& ios, int port)
+TRServer::TRServer(boost::asio::io_service& ios, int port)
     : m_IOS(ios), m_Acceptor(ios, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port))
 {
-    start_async_accept(std::make_shared<Session>(m_IOS));
+    start_async_accept(std::make_shared<TRSession>(m_IOS));
 }
 //-----------------------------------------------------------------------------
-Server::~Server()
+TRServer::~TRServer()
 {
 
 }
 //-----------------------------------------------------------------------------
-void Server::handle_accept(std::shared_ptr<Session> s, const boost::system::error_code& e)
+void TRServer::handle_accept(std::shared_ptr<TRSession> s, const boost::system::error_code& e)
 {
     if (e)
     {
@@ -21,17 +21,17 @@ void Server::handle_accept(std::shared_ptr<Session> s, const boost::system::erro
         return;
     }
 
-    std::cout << "Accepted connection from " << utils::get_socket_address(s) << std::endl;
+    std::cout << "Accepted connection from " << TRUtils::get_socket_address(s) << std::endl;
 
     s->start_async_read();
-    s = std::make_shared<Session>(m_IOS);
+    s = std::make_shared<TRSession>(m_IOS);
     start_async_accept(s);
 }
 //-----------------------------------------------------------------------------
-void Server::start_async_accept(std::shared_ptr<Session> s)
+void TRServer::start_async_accept(std::shared_ptr<TRSession> s)
 {
     m_Acceptor.async_accept(s->get_socket(),
-        boost::bind(&Server::handle_accept, this, s,
+        boost::bind(&TRServer::handle_accept, this, s,
             boost::asio::placeholders::error));
 }
 //-----------------------------------------------------------------------------

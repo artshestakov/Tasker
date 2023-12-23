@@ -20,16 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="server.cpp" />
-    <ClCompile Include="session.cpp" />
+    <ClCompile Include="TRServer.cpp" />
+    <ClCompile Include="TRSession.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="TRUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="server.h" />
-    <ClInclude Include="session.h" />
+    <ClInclude Include="TRServer.h" />
+    <ClInclude Include="TRSession.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="utils.h" />
+    <ClInclude Include="TRUtils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
